@@ -33,10 +33,17 @@ public class IntQueueTest {
     @Before
     public void setUp() {
         // comment/uncomment these lines to test each class
-        mQueue = new LinkedIntQueue();
+        mQueue = new ArrayIntQueue();
 //        mQueue = new ArrayIntQueue();
 
         testList = new ArrayList<>(List.of(1, 2, 3));
+    }
+
+    @Test
+    public void testClear() {
+        mQueue.enqueue(2);
+        mQueue.clear();
+        assertEquals(mQueue.size(), 0);
     }
 
     @Test
@@ -78,6 +85,11 @@ public class IntQueueTest {
             assertEquals(testList.get(i), mQueue.dequeue());
             assertEquals(testList.size() - i - 1, mQueue.size());
         }
+    }
+
+    @Test
+    public void testEmptyDequeue() {
+        assertNull(mQueue.dequeue());
     }
 
     @Test
